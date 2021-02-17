@@ -59,7 +59,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     # As with any Django models, we need to define the fields
     # for the model with the type and options:
     email = models.EmailField(max_length=255, unique=True)
-    # name = models.CharField(max_length=255)
+    user_name = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
@@ -79,7 +79,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     # the class is output we'll get something meaningful.
     def __str__(self):
         """Return string representation of the user"""
-        return self.email
+        return self.user_name
 
     def get_auth_token(self):
         Token.objects.filter(user=self).delete()
