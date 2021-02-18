@@ -41,11 +41,11 @@ class MyWorkouts(generics.ListCreateAPIView):
     serializer_class = WorkoutSerializer
 
     def get(self, request):
-        """Index ALL Workouts Request"""
+        """Index ALL Of MY Workouts Request"""
         # Filter the mangos by owner, so you can only see your owned mangos
         workouts = Workout.objects.filter(author=request.user.id)
         # Run the data through the serializer
-        data = WorkoutSerializer(workouts, many=True).data
+        data = WorkoutReadSerializer(workouts, many=True).data
         return Response({ 'workouts': data })
 
 class WorkoutDetail(generics.RetrieveUpdateDestroyAPIView):
