@@ -7,12 +7,12 @@ class Workout(models.Model):
   # define fields
   # https://docs.djangoproject.com/en/3.0/ref/models/fields/
   CATEGORY_CHOICES = [
-    ('UB', 'Upper Body'),
-    ('LB', 'Lower Body'),
-    ('C', 'Core'),
-    ('GO', 'Cardio'),
-    ('FB', 'Full Body'),
-    ('Re', 'Recovery')
+    ('Upper Body', 'UB'),
+    ('Lower Body', 'LB'),
+    ('Core', 'C'),
+    ('Cardio', 'GO'),
+    ('Full Body', 'FB'),
+    ('Recovery', 'Re')
   ]
 
   title = models.CharField(max_length=100)
