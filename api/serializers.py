@@ -3,6 +3,7 @@ from rest_framework import serializers
 
 from .models.workout import Workout
 from .models.user import User
+from .models.favs import Favorite
 
 
 # Workout Serializers
@@ -14,7 +15,6 @@ class WorkoutSerializer(serializers.ModelSerializer):
 class WorkoutReadSerializer(WorkoutSerializer):
     author = serializers.StringRelatedField()
 
-
 # User Serializers
 class UserSerializer(serializers.ModelSerializer):
     # This model serializer will be used for User creation
@@ -24,7 +24,7 @@ class UserSerializer(serializers.ModelSerializer):
         # get_user_model will get the user model (this is required)
         # https://docs.djangoproject.com/en/3.0/topics/auth/customizing/#referencing-the-user-model
         model = get_user_model()
-        fields = ('id', 'email', 'user_name', 'password')
+        fields = ('id', 'email', 'user_name', 'favorites', 'password')
         extra_kwargs = { 'password': { 'write_only': True, 'min_length': 5 } }
 
     # This create method will be used for model creation
@@ -53,3 +53,21 @@ class ChangePasswordSerializer(serializers.Serializer):
     model = get_user_model()
     old = serializers.CharField(required=True)
     new = serializers.CharField(required=True)
+
+
+class FavoriteSerializer(serializers.ModelSerializer):
+    class Meta:
+      model = Favorite
+      fields = '__all__'
+
+
+class FavoriteReadSerializer(serializers.ModelSerializer):
+    workout = WorkoutSerializer(source='workout_id', read_only=True)
+    user = UserSerializer(source='user_id', read_only=True)
+    class Meta:
+        model = Favorite
+        fields = ('id', 'workout')
+
+class UserReadSerializer(UserSerializer):
+    favorites = serializers.StringRelatedField(many=True)
+    # favorites = FavoriteReadSerializer(many=True)

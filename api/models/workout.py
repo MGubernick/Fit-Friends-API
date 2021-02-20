@@ -32,11 +32,18 @@ class Workout(models.Model):
   description = models.CharField(max_length=8000)
 
 
+  favorites = models.ManyToManyField(
+    get_user_model(),
+    through='Favorite',
+    through_fields=('workout_id', 'user_id'),
+    blank=True,
+    related_name='favorites'
+  )
+
 
   def __str__(self):
-    # This must return a string
     """Returns a string variation of Workout Model"""
-    return f"The workout titled '{self.name}' was written by {self.author} and falls into the category: {self.category}. The difficulty level is {self.difficulty} and here are the exercises and details: {self.description}."
+    return self.name, self.author, self.category, self.difficulty, self.description
 
   def as_dict(self):
     """Returns dictionary version of Workout Model"""

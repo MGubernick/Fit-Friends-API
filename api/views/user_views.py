@@ -6,8 +6,20 @@ from rest_framework import status, generics
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import get_user, authenticate, login, logout
 
-from ..serializers import UserSerializer, UserRegisterSerializer,  ChangePasswordSerializer
+from ..serializers import UserSerializer, UserReadSerializer, UserRegisterSerializer,  ChangePasswordSerializer
 from ..models.user import User
+
+class Users(generics.CreateAPIView):
+    authentication_classes = ()
+    permission_classes = ()
+
+    serializer_class = UserReadSerializer
+
+    def get(self, request):
+        """Index of Users"""
+        users = User.objects.all()[:5]
+        data = UserReadSerializer(users, many=True).data
+        return Response({ 'users': data })
 
 class SignUp(generics.CreateAPIView):
     # Override the authentication/permissions classes so this endpoint
