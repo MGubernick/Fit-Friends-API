@@ -10,10 +10,11 @@ from .models.favs import Favorite
 class WorkoutSerializer(serializers.ModelSerializer):
     class Meta:
         model = Workout
-        fields = ('id', 'title', 'author', 'category', 'difficulty', 'description')
+        fields = ('id', 'title', 'author', 'category', 'difficulty', 'description', 'favorites')
 
 class WorkoutReadSerializer(WorkoutSerializer):
     author = serializers.StringRelatedField()
+    favorites = serializers.StringRelatedField(many=True)
 
 # User Serializers
 class UserSerializer(serializers.ModelSerializer):
