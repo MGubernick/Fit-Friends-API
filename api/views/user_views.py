@@ -21,6 +21,18 @@ class Users(generics.CreateAPIView):
         data = UserReadSerializer(users, many=True).data
         return Response({ 'users': data })
 
+class UserDetail(generics.CreateAPIView):
+    authentication_classes = ()
+    permission_classes = ()
+
+    serializer_class = UserReadSerializer
+
+    def get(self, request, pk):
+        """One User"""
+        user = get_object_or_404(User, pk=pk)
+        data = UserReadSerializer(user).data
+        return Response({ 'user': data })
+
 class SignUp(generics.CreateAPIView):
     # Override the authentication/permissions classes so this endpoint
     # is not authenticated & we don't need any permissions to access it.
@@ -36,7 +48,7 @@ class SignUp(generics.CreateAPIView):
         # If that data is in the correct format...
         if user.is_valid():
             # Actually create the user using the UserSerializer (the `create` method defined there)
-            created_user = UserSerializer(data=user.data)
+            created_user = UserReadSerializer(data=user.data)
 
             if created_user.is_valid():
                 # Save the user and send back a response!
@@ -54,7 +66,7 @@ class SignIn(generics.CreateAPIView):
     permission_classes = ()
 
     # Serializer classes are required for endpoints that create data
-    serializer_class = UserSerializer
+    serializer_class = UserReadSerializer
 
     def post(self, request):
         creds = request.data['credentials']

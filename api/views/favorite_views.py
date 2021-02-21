@@ -24,7 +24,8 @@ class Favorites(generics.ListCreateAPIView):
     serializer_class = FavoriteSerializer
     def post(self, request):
         """Post Request for Favs"""
-        favorite = FavoriteSerializer(data=request.data)
+        print(request.data)
+        favorite = FavoriteSerializer(data=request.data['favorite'])
         if favorite.is_valid():
             f = favorite.save()
             return Response(favorite.data, status=status.HTTP_201_CREATED)

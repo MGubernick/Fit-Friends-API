@@ -70,5 +70,10 @@ class FavoriteReadSerializer(serializers.ModelSerializer):
         fields = ('id', 'workout')
 
 class UserReadSerializer(UserSerializer):
-    favorites = serializers.StringRelatedField(many=True)
-    # favorites = FavoriteReadSerializer(many=True)
+    favorites = serializers.StringRelatedField(many=True, required=False)
+    class Meta:
+        # get_user_model will get the user model (this is required)
+        # https://docs.djangoproject.com/en/3.0/topics/auth/customizing/#referencing-the-user-model
+        model = get_user_model()
+        fields = ('id', 'email', 'user_name', 'favorites', 'password')
+        extra_kwargs = { 'password': { 'write_only': True, 'min_length': 5 } }

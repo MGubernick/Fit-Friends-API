@@ -42,8 +42,9 @@ class Workout(models.Model):
 
 
   def __str__(self):
+    # This must return a string
     """Returns a string variation of Workout Model"""
-    return self.name, self.author, self.category, self.difficulty, self.description
+    return str(self.id)
 
   def as_dict(self):
     """Returns dictionary version of Workout Model"""
