@@ -67,7 +67,7 @@ class FavoriteReadSerializer(serializers.ModelSerializer):
     user = UserSerializer(source='user_id', read_only=True)
     class Meta:
         model = Favorite
-        fields = ('id', 'workout')
+        fields = ('id', 'workout', 'user')
 
 class UserReadSerializer(UserSerializer):
     favorites = serializers.StringRelatedField(many=True, required=False)

@@ -6,4 +6,4 @@ class Favorite(models.Model):
     user_id = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.workout_id
+        return self.id

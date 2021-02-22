@@ -14,7 +14,7 @@ urlpatterns = [
     path('one-user/<int:pk>', UserDetail.as_view(), name='one_user'),
     # Favorite Paths
     path('favorites', Favorites.as_view(), name='favorites'),
-    path('favorite/<int:pk>', FavoriteDetail.as_view(), name='favorite_detail'),
+    path('favorites/<int:pk>', FavoriteDetail.as_view(), name='favorite_detail'),
     # Auth Paths
     path('sign-up/', SignUp.as_view(), name='sign-up'),
     path('sign-in/', SignIn.as_view(), name='sign-in'),
