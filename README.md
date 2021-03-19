@@ -79,6 +79,7 @@ This is the repository for the Fit-Friends API, Fit-Friends is a simple but fun 
 - Django
 - Django Rest framework
 - PostgreSQL
+- Heroku
 
 ## Unsolved Problems:
 - The problem that I am currently working on the solution for is being able to click on one of the oter users names (when looking at a workouts favorites) and see that user's favorite workouts.
