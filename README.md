@@ -1,4 +1,4 @@
-# Project 3: Code-laborate (API)
+# Project 4: Fit-Friends (API)
 
 This is the repository for the Fit-Friends API, Fit-Friends is a simple but fun workout/fitness sharing app, bringing people together through the shared passion for staying fit! Users can create an account and begin their journey.  Once signed in the user will be able to submit a workout of their own, sharing it with the community.  They can also update and delete any workout they post.  Outside of submitting their own workouts, a user is able to browse the already existing library of workouts by either category or by simply viewing all of the workouts.  The category browsing in the index is made easy by convenient icons signifying the type of workout.  As a user you are also able to collect your favorites by selecting the "add to favorites" option when viewing a single workout.
 
